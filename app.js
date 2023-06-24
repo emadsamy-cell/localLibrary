@@ -9,6 +9,17 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// connect to DB
+const mongoose = require('mongoose');
+const mongodb = "mongodb+srv://3omda:0502235180@cluster0.wp5ix59.mongodb.net/local_library?retryWrites=true&w=majority";
+mongoose.set("strictPopulate" , false);
+
+
+async function main(){
+  await mongoose.connect(mongodb);
+}
+
+main().catch(err => console.error(err));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
