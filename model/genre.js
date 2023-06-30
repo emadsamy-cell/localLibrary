@@ -1,8 +1,10 @@
-import { Schema , model } from "mongoose";
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
 
 const genreSchema = new Schema({
     name : {type : String, required :true , min: 3 , max:100},
-    book : {type : Schema.Types.ObjectId , required : true}
+    book : {type : Schema.Types.ObjectId , ref : 'book' , required : true}
 });
 
 genreSchema.virtual('url').get(function(){
@@ -10,4 +12,4 @@ genreSchema.virtual('url').get(function(){
 });
 
 
-export const genreModel = model('genre' , genreSchema);
+module.exports = mongoose.model('genre' , genreSchema);

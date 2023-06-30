@@ -1,5 +1,5 @@
-import {Schema , model , connect} from 'mongoose';
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const AuthorSchema = new Schema({
     fname: {type :String , required:[true , "Author Name can't be empty" ], max:100},
@@ -21,4 +21,4 @@ AuthorSchema.virtual('url').get(function(){
     return `./catalog/author/${this._id}`;
 });
 
-export const AuthorModel = model('Author' , AuthorSchema);
+module.exports = mongoose.model('Author' , AuthorSchema);
